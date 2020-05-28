@@ -1,0 +1,32 @@
+{% extends 'tasks/base.htm' %}
+{% load static %}
+{% block title %}ToDo{Complete Your Tasks}{% endblock %}
+{% block content %}
+    <h2 class="heading">ToDo{Create your todo-list}</h2>
+    <div class="center-column">
+        <form method="POST" action="/">
+            {% csrf_token %} {{form.title}}
+            <input class="btn btn-info" type="submit" value="Add Task">
+        </form>
+        <div class="todo-list">
+            {% for task in tasks %}
+            <div class="item-row">
+    
+                {% if task.completed == 1 %}
+                <strike>{{task}}</strike>
+                {% else %}
+                <span>{{task}}</span>
+                {% endif %}
+                <div class="text-right">
+                    <a class="btn btn-sm btn-info" href="{% url 'update_task' task.id %}">Update</a>
+                    <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+   
+    
+

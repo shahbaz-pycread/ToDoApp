@@ -1,0 +1,15 @@
+{% extends 'tasks/base.htm' %}
+{% load static %}
+{% block title %}ToDo{Delete Your Tasks}{% endblock %}
+{% block content %}
+
+    <p class="confirm_msg">Do you really want to delete "{{item}}"?</p>
+    
+    <a class="cancel" href="{% url 'list' %}">Cancel</a>
+    
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="submit" class="delConfirm"  value="Confirm">
+    </form>
+
+{% endblock %}
